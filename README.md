@@ -190,13 +190,15 @@ src/
 - [x] 路由設定（React Router，五大頁面路徑配置）
 - [x] 菜單資料建立（`menuData.jsx`，藤原文化店 19 筆）
 - [x] 配色方案確認（藤原暖米色系，`theme.js`）
-- [x] Header 元件
-- [x] ProductCard 元件
-- [x] ProductGrid 元件
-- [ ] 分類標籤列（Category 膠囊橫向）
-- [ ] 懸浮購物車圓鈕
+- [x] Header 元件（含向下滾動自動收起）
+- [x] ProductCard 元件（點擊導向 ProductPage，售完鎖定）
+- [x] ProductGrid 元件（依 category 篩選渲染）
+- [x] 分類標籤列（CategoryNav，點擊平滑滾動至對應區塊）
+- [x] 懸浮購物車圓鈕（FloatingCart，固定右下角）
+- [x] customizationOptions 資料結構（飯食類 / 麵食類 / 單點）
+- [x] ProductPage 靜態切版（商品圖、客製化選項、備註、數量、Sticky 加入按鈕）
+- [ ] ProductPage 互動邏輯（勾選計算金額、加入購物車）
 - [ ] SeatingGrid 座位元件
-- [ ] ProductPage 切版
 - [ ] CartPage 切版
 - [ ] CheckoutPage 切版
 - [ ] LoginPage 切版

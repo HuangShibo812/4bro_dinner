@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
@@ -11,11 +12,14 @@ const NavWrapper = styled.nav`
   display: flex;
   gap: 10px;
   padding: 12px 36px;
-  position: sticky;
-  top: 60px;
+  position: fixed;
+  top: ${({ $headerVisible }) => ($headerVisible ? '60px' : '0px')};
+  left: 0;
+  right: 0;
   z-index: 90;
   background-color: ${theme.bg};
   border-bottom: 1px solid ${theme.secondary}44;
+  transition: top 0.3s ease;
 `;
 
 const NavButton = styled.button`
@@ -36,13 +40,33 @@ const NavButton = styled.button`
 `;
 
 const CategoryNav = () => {
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 120) {
+        setHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setHeaderVisible(false);
+      } else {
+        setHeaderVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleClick = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <NavWrapper>
+    <NavWrapper $headerVisible={headerVisible}>
       {categories.map(({ label, id }) => (
         <NavButton key={id} onClick={() => handleClick(id)}>
           {label}

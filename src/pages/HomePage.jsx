@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import Header from '../components/common/Header';
 import CategoryNav from '../components/common/CategoryNav';
 import ProductGrid from '../components/common/ProductGrid';
+import FloatingCart from '../components/common/FloatingCart';
 import { theme } from '../styles/theme';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
   background-color: ${theme.bg};
+  padding-top: 116px;
 `;
 
 const Section = styled.section`
@@ -47,6 +49,7 @@ const HomePage = () => {
         <SectionTitle>單點小菜</SectionTitle>
         <ProductGrid category="side" />
       </Section>
+      <FloatingCart itemCount={0} />
     </PageWrapper>
   );
 };
